@@ -9,6 +9,7 @@
 
 from colorama import init
 from termcolor import colored
+from encrypt import encrypt_choice
 
 init()
 
@@ -56,7 +57,7 @@ def get_use():
         get_use()
     
     if main_choice == "1":
-        choice_encrypt()
+        encrypt_choice()
     elif main_choice == "2":
         choice_decrypt()
     elif main_choice == "3":
