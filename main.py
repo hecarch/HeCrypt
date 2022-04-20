@@ -10,7 +10,7 @@
 
 from colorama import init
 from termcolor import colored
-from encrypt import encrypt_choice
+from encrypt_heca import *
 import sys
 import getopt
 import os
@@ -33,7 +33,7 @@ print("")
 
 def verify_os():
     if os.name == "nt":
-        print("This tool can't be run on a windows machine.")
+        print("This tool can't be run on a windows machine, please install a real OS.")
 
 def verify_file(argv):
     filename = ''
@@ -52,8 +52,10 @@ def verify_file(argv):
         elif opt != "-i":
                 print("Input file must be provided !")  # TODO si l'user ne rentre pas de filename, le dire et exit
                 sys.exit()
-    
+
+verify_os()
 filename = verify_file(sys.argv[1:])
+encrypt_heca.recup_file(filename)
 
 def choice_encrypt():
     print("Encrypt here")

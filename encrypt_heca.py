@@ -3,14 +3,26 @@ import os
 from colorama import init
 from termcolor import colored
 
-def encode_bs64():
-    command = "base64 " + filename  # idée : créer un fichier qui contient le contenu de l'input, avec un nom déterminé, caché, réécris à chaque request
-    output = os.system(command)
+
+def encode():
+    filename = verify_file(argv)
+    while open(filename, 'r'):
+        content = bs64(f)
+    #command = "base64 " + filename  # idée : créer un fichier qui contient le contenu de l'input, avec un nom déterminé, caché, réécris à chaque request
+    #output = os.system(command)
+    #print(" <==== BASE64 ====>")
+    #print(output)
+
+def recup_file(filename):
+    return filename
+
+def bs64(file):
+    encode_data = base64.b64encode(file.encode("utf-8"))
     print(" <==== BASE64 ====>")
-    print(output)
+    print(encode_data)
 
 def encrypt_choice():
-    print(colored("[+]   Please make your choice    >", "green"))
+    print(colored("[Encrypt]   Please make your choice    >", "green"))
     print("")
     print("     <|  1 > base64")
     print("     <|  2 > md5")
@@ -33,7 +45,7 @@ def encrypt_choice():
         encrypt_choice()
 
     if e_choice == "1":
-        encode_bs64()
+        encode()
     if e_choice == "2":
         print("md5 coming")
     if e_choice == "3":
@@ -53,4 +65,4 @@ def encrypt_choice():
     if e_choice == "10":
         print("binary coming")
     if e_choice == "exit" or e_choice == "quit":
-        sys.exit()
+        exit()
