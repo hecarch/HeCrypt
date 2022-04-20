@@ -1,15 +1,19 @@
 # Main script to run
 # Made by hecatonchire#4292
-#!/usr/bin/env python
+#!/usr/bin/python
 
 # checker si il exite .hecrypt.config à chaque fois, stocker dedans la langue
 # -f pour outrepasser le get_use()
 # inventer une fonction ?
 # faire un requierements.txt
+# prend forcément un fichier en input 
 
 from colorama import init
 from termcolor import colored
 from encrypt import encrypt_choice
+import sys
+import getopt
+import os
 
 init()
 
@@ -26,6 +30,30 @@ print("::: :   : :!::   : : ::   : : : :! : :::        !!       :!: : :    ::: :
 print("                                              ::!        ::              ")
 print("                                            :::        : : ::                                @hecarch_")
 print("")
+
+def verify_os():
+    if os.name == "nt":
+        print("This tool can't be run on a windows machine.")
+
+def verify_file(argv):
+    filename = ''
+    try:
+        opts, args = getopt.getopt(sys.argv[1:],"h:i:")
+    except getopt.GetoptError:
+        print("usage : main.py -i <filename>")
+        sys.exit(2)
+    for (opt, arg) in opts:
+        if opt == "-h":
+            print("usage : main.py -i <filename>")
+        elif opt == ("-i"):
+            filename = arg
+            print("Input file is", filename)
+            return filename
+        elif opt != "-i":
+                print("Input file must be provided !")  # TODO si l'user ne rentre pas de filename, le dire et exit
+                sys.exit()
+    
+filename = verify_file(sys.argv[1:])
 
 def choice_encrypt():
     print("Encrypt here")
